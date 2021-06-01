@@ -1,3 +1,3 @@
 # cashieappAPI
 
-API for Cashie App Point of Sale Application.
+API for Cashie App Point of Sale Application. Project is still in progress...
