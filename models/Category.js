@@ -1,14 +1,11 @@
+'use strict';
 const mongoose = require('mongoose');
 
 const CategorySchema = new mongoose.Schema({
-    name:{
-        type:String,
-        required:[true,'Please add a category']
-    },
-    createdAt:{
-        type:Date,
-        default:Date.now
-    }
+    name:String
+},
+{
+    timestamps:true
 });
 
 module.exports = mongoose.model('Category',CategorySchema);

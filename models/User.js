@@ -1,3 +1,4 @@
+'use strict';
 const mongoose = require('mongoose');
 
 const UserSchema = new mongoose.Schema({
@@ -25,11 +26,11 @@ const UserSchema = new mongoose.Schema({
         //select false ensures we do not select/show the password during API calls
     },
     resetPasswordToken:Date,
-    resetPasswordExpire:Date,
-    createdAt:{
-        type:Date,
-        default:Date.now
-    }
-});
+    resetPasswordExpire:Date
+},
+{
+    timestamps:true
+}
+);
 
 module.exports = mongoose.model('User', UserSchema);
