@@ -1,18 +1,13 @@
 'use strict';
 const Category = require('../models/Category');
 const asyncHandler = require('../middleware/async');
-//const advancedResults = require('../middleware/advancedResults');
+const advancedResults = require('../middleware/advancedResults');
 
 //@desc Get All Categories
 //@route GET api/v1/categories
 //@access Public
 exports.getCategories = asyncHandler(async(req,res, next)=>{
-    const categories = await Category.find({});
-    res.status(200).json({
-        success:true,
-        count:categories.length,
-        data:categories
-    });
+    res.status(200).json(res.advancedResults);
 })
 
 //@desc Get Single Category
@@ -22,7 +17,7 @@ exports.getCategory = asyncHandler(async(req,res, next)=>{
 
     const category = await Category.findById(req.params.categoryid);
     
-       res.status(201).json({
+       res.status(200).json({
            success:true,
            data:category
        });
@@ -59,7 +54,6 @@ exports.updateCategory = asyncHandler(async(req,res, next)=>{
         
     res.status(201).json({
             success:true,
-            count:category.length,
             data:category
            
         });
@@ -75,7 +69,7 @@ exports.deleteCategory = asyncHandler(async(req,res, next)=>{
      const category = await Category.findById(req.params.categoryid);
         
       category.remove();
-        res.status(201).json({
+        res.status(200).json({
             success:true,
             data:{}
         });

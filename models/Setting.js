@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 
 const SettingSchema = new mongoose.Schema({
     name:String,
-    discount: String,
-    tax:String
+    discount: Number,
+    tax:Number
 },
 {
     timestamps:true

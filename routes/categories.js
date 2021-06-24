@@ -9,12 +9,15 @@ const {
     deleteCategory
 } = require('../controllers/categories');
 
+const advancedResults = require('../middleware/advancedResults');
+const Category = require('../models/Category');
+
 const router = express.Router();
 
 
 router
     .route('/')
-    .get(getCategories)
+    .get(advancedResults(Category),getCategories)
     .post(createCategory);
 
 router

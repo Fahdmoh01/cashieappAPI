@@ -19,7 +19,8 @@ const ENV = process.env.NODE_ENV;
 
 //importing Routes
 const categoryRoutes = require('./routes/categories');
-
+const productRoutes = require('./routes/products');
+const settingRoutes = require('./routes/settings');
 
 const app = express();
 
@@ -28,11 +29,16 @@ app.use(express.json());
 
 //Mount routers unto specific urls
 app.use('/api/v1/categories', categoryRoutes);
+app.use('/api/v1/products', productRoutes);
+app.use('/api/v1/settings', settingRoutes);
+
+
 
 //dev logging middleware
 if(ENV === 'development'){
     app.use(morgan('dev'));
 }
+
 //error Handler
 app.use(errorHandler);
 
