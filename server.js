@@ -21,6 +21,8 @@ const ENV = process.env.NODE_ENV;
 const categoryRoutes = require('./routes/categories');
 const productRoutes = require('./routes/products');
 const settingRoutes = require('./routes/settings');
+const transactionRoutes = require('./routes/transactions');
+
 
 const app = express();
 
@@ -31,6 +33,7 @@ app.use(express.json());
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/settings', settingRoutes);
+app.use('/api/v1/transactions', transactionRoutes);
 
 
 

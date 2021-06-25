@@ -12,4 +12,4 @@ const TransactionSchema = new mongoose.Schema({
     timestamps:true
 });
 
-module.exports = mongoose.model('Trasaction',TransacationSchema);
+module.exports = mongoose.model('Trasaction',TransactionSchema);
