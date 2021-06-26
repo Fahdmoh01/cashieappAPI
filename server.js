@@ -22,6 +22,8 @@ const categoryRoutes = require('./routes/categories');
 const productRoutes = require('./routes/products');
 const settingRoutes = require('./routes/settings');
 const transactionRoutes = require('./routes/transactions');
+const userRoutes = require('./routes/users');
+
 
 
 const app = express();
@@ -34,6 +36,7 @@ app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/settings', settingRoutes);
 app.use('/api/v1/transactions', transactionRoutes);
+app.use('/api/v1/users', userRoutes);
 
 
 

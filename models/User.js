@@ -15,13 +15,13 @@ const UserSchema = new mongoose.Schema({
     },
     role:{
         type:String,
-        enum:['admin','cashier'],
+        enum:['user','cashier'],
         default:'cashier'
     },
     password:{
         type:String,
         required:[true, 'Please add a password'],
-        minlength: 8,
+        minlength: 6,
         select:false
         //select false ensures we do not select/show the password during API calls
     },
