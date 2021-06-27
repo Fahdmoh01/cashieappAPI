@@ -3,6 +3,7 @@ const express = require('express');
 const dotenv = require('dotenv');
 const colors = require('colors');
 const morgan = require('morgan');
+const cookieParser = require('cookie-parser');
 const errorHandler = require('./middleware/error');
 
 
@@ -23,6 +24,8 @@ const productRoutes = require('./routes/products');
 const settingRoutes = require('./routes/settings');
 const transactionRoutes = require('./routes/transactions');
 const userRoutes = require('./routes/users');
+const authRoutes = require('./routes/auth');
+
 
 
 
@@ -31,14 +34,16 @@ const app = express();
 //body parser
 app.use(express.json());
 
+//cookie parser
+app.use(cookieParser());
+
 //Mount routers unto specific urls
 app.use('/api/v1/categories', categoryRoutes);
 app.use('/api/v1/products', productRoutes);
 app.use('/api/v1/settings', settingRoutes);
 app.use('/api/v1/transactions', transactionRoutes);
 app.use('/api/v1/users', userRoutes);
-
-
+app.use('/api/v1/auth', authRoutes);
 
 //dev logging middleware
 if(ENV === 'development'){
