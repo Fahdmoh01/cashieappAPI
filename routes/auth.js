@@ -2,10 +2,12 @@
 const express = require('express');
 const {
     registerUser,
-    loginUser
+    loginUser,
+    getLoggedInUser,
+    logoutUser
 } = require('../controllers/auth');
 
-//const {protect} = require('../middleware/auth');
+const {protect} = require('../middleware/auth');
 
 const router = express.Router();
 
@@ -16,6 +18,14 @@ router
 router
     .route('/login')
     .post(loginUser);
+
+router
+    .route('/me')
+    .get(protect,getLoggedInUser);
+
+    router
+    .route('/logout')
+    .get(logoutUser);
 
 
 

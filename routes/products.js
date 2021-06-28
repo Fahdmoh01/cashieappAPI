@@ -11,18 +11,19 @@ const {
 
 const advancedResults = require('../middleware/advancedResults');
 const Product = require('../models/Product');
+const {protect,authorize} = require('../middleware/auth');
 
 const router = express.Router();
 
 router
     .route('/')
-    .get(advancedResults(Product),getProducts)
-    .post(createProduct);
+    .get(protect, advancedResults(Product),getProducts)
+    .post(protect, authorize('admin'),createProduct);
 
 router
      .route('/:productid')
-     .get(getProduct)
-     .put(updateProduct)
-     .delete(deleteProduct);
+     .get(protect, getProduct)
+     .put(protect, authorize('admin'), updateProduct)
+     .delete(protect,authorize('admin'),deleteProduct);
 
 module.exports = router;

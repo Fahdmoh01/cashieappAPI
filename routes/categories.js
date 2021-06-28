@@ -10,6 +10,10 @@ const {
 } = require('../controllers/categories');
 
 const advancedResults = require('../middleware/advancedResults');
+const {protect} = require('../middleware/auth');
+
+
+
 const Category = require('../models/Category');
 
 const router = express.Router();
@@ -17,7 +21,7 @@ const router = express.Router();
 
 router
     .route('/')
-    .get(advancedResults(Category),getCategories)
+    .get(protect, advancedResults(Category),getCategories)
     .post(createCategory);
 
 router
