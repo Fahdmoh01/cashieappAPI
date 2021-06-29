@@ -5,7 +5,7 @@ API for an Ecommerce Point of Sale Application
 ## API Documentation
 https://documenter.getpostman.com/view/15378956/TzefC4FZ
 
-##Usage 
+## Usage 
 Rename "config/config.env.env" to "config/config.env" and update the value and settings to your own
 
 ## Install Dependencies
