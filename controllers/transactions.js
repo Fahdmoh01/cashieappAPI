@@ -2,6 +2,7 @@
 const Transaction = require('../models/Transaction');
 const asyncHandler = require('../middleware/async');
 const advancedResults = require('../middleware/advancedResults');
+const stripe = require('stripe')(`${process.env.GATEWAY_KEY}`);
 
 //@desc Get All Transactions
 //@route GET api/v1/transactions
@@ -30,7 +31,6 @@ exports.getTransaction = asyncHandler(async(req,res, next)=>{
 exports.createTransaction = asyncHandler(async(req,res, next)=>{
 
 const transaction = await Transaction.create(req.body);
-   //console.log(req.body);
 
     res.status(201).json({
         success:true,
@@ -74,3 +74,36 @@ exports.deleteTransaction = asyncHandler(async(req,res, next)=>{
             data:{}
         });
     })
+
+
+//@desc Make Payment
+//@route POST api/v1/transactions/payments
+//@access Private
+const YOUR_DOMAIN = 'http://localhost:3000';
+exports.makePayment= asyncHandler( async (req, res, next) => {
+  const session = await stripe.checkout.sessions.create({
+    payment_method_types: ['card'],
+    line_items: [
+      {
+        price_data: {
+          currency: 'usd',
+          product_data: {
+            name: req.body.description,
+          },
+          unit_amount: req.body.price,
+        },
+        quantity: 1,
+      },
+    ],
+    mode: 'payment',
+    success_url: `${YOUR_DOMAIN}/api/v1/transactions/success`,
+    cancel_url: `${YOUR_DOMAIN}/api/v1/transationns/cancel`,
+  });
+
+  res.json({ 
+    success:true,  
+    id: session.id
+  });
+
+});
+

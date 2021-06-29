@@ -38,6 +38,9 @@ const authRoutes = require('./routes/auth');
 
 const app = express();
 
+//stripe config
+app.use(express.static('.'));
+
 //body parser
 app.use(express.json());
 
